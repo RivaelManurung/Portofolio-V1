@@ -132,10 +132,8 @@ export const experiences: Experience[] = [
   },
 ];
 
-// NOTE: liveUrl values are placeholders — replace with your real deployments.
-const UNSPLASH = (id: string, w = 1400) =>
-  `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
-
+// All imagery is now local & developer-themed (no remote hosts needed).
+// liveUrl values are placeholders — replace with your real deployments.
 // Developer-themed placeholder screenshots (local, in /public/gallery) — swap
 // for real project captures later.
 const GALLERIES: Record<string, string[]> = {
@@ -174,7 +172,7 @@ export const projects: Project[] = [
     role: "Fullstack Developer",
     stack: ["Next.js", "Go", "PostgreSQL", "Framer Motion"],
     accent: "#ec4899",
-    image: UNSPLASH("photo-1522075469751-3a6694fb2f61"),
+    image: "/gallery/dev-02.jpg",
     gallery: galleryFor("bloomcare"),
     liveUrl: "https://bloomcare.vercel.app",
     repoUrl: "https://github.com/RivaelManurung/bloomcare",
@@ -204,7 +202,7 @@ export const projects: Project[] = [
     role: "Fullstack Developer",
     stack: ["Next.js", "Stripe", "Tailwind", "Sanity"],
     accent: "#0ea5e9",
-    image: UNSPLASH("photo-1541643600914-78b084683601"),
+    image: "/gallery/dev-10.jpg",
     gallery: galleryFor("fragwater"),
     liveUrl: "https://fragwater.vercel.app",
   },
@@ -233,7 +231,7 @@ export const projects: Project[] = [
     role: "Fullstack Developer",
     stack: ["React", "Go", "WebSocket", "Redis"],
     accent: "#8b5cf6",
-    image: UNSPLASH("photo-1640340434855-6084b1f4901c"),
+    image: "/gallery/dev-06.jpg",
     gallery: galleryFor("cryptocalm"),
     liveUrl: "https://cryptocalm.vercel.app",
     repoUrl: "https://github.com/RivaelManurung/cryptocalm",
@@ -263,7 +261,7 @@ export const projects: Project[] = [
     role: "Backend Developer",
     stack: ["Flutter", "Laravel", "MySQL", "Redis"],
     accent: "#22c55e",
-    image: UNSPLASH("photo-1563986768609-322da13575f3"),
+    image: "/gallery/dev-03.jpg",
     gallery: galleryFor("lunapay"),
     liveUrl: "https://lunapay-demo.vercel.app",
   },
@@ -291,7 +289,7 @@ export const projects: Project[] = [
     role: "Creative Developer",
     stack: ["Three.js", "GLSL", "Framer Motion"],
     accent: "#f59e0b",
-    image: UNSPLASH("photo-1502691876148-a84978e59af8"),
+    image: "/gallery/dev-05.jpg",
     gallery: galleryFor("aurora-motion"),
     repoUrl: "https://github.com/RivaelManurung/aurora-motion",
   },
@@ -319,7 +317,7 @@ export const projects: Project[] = [
     role: "Designer / Developer",
     stack: ["Next.js", "CSS Grid"],
     accent: "#64748b",
-    image: UNSPLASH("photo-1618761714954-0b8cd0026356"),
+    image: "/gallery/dev-15.jpg",
     gallery: galleryFor("gridtype"),
     repoUrl: "https://github.com/RivaelManurung/gridtype",
   },
