@@ -47,17 +47,19 @@ export function Navbar() {
             : "border-transparent bg-white/40 backdrop-blur-sm"
         )}
       >
-        {/* Availability pill */}
+        {/* Brand */}
         <Link
-          href="#contact"
-          className="group flex items-center gap-2 rounded-full bg-white px-3.5 py-2 text-sm font-medium shadow-sm ring-1 ring-neutral-200/70"
+          href="#"
+          aria-label={`${person.firstName} ${person.lastName} — home`}
+          className="group flex items-center gap-2 rounded-full px-2 py-1 text-base font-extrabold tracking-tight text-neutral-950"
         >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#16a34a] opacity-70" />
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-[#16a34a]" />
+          <span className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white">
+            {person.firstName.charAt(0)}
           </span>
-          <span className="hidden sm:inline">Available for New Project</span>
-          <span className="sm:hidden">Available</span>
+          <span className="hidden sm:inline">
+            {person.firstName.charAt(0) +
+              person.firstName.slice(1).toLowerCase()}
+          </span>
         </Link>
 
         {/* Desktop links */}
@@ -66,14 +68,9 @@ export function Navbar() {
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="group relative flex items-center gap-1 text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950"
+                className="group relative flex items-center text-sm font-medium text-neutral-700 transition-colors hover:text-neutral-950"
               >
                 {link.label}
-                {link.count && (
-                  <sup className="text-[10px] font-semibold text-neutral-500">
-                    [{link.count}]
-                  </sup>
-                )}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-neutral-900 transition-all duration-300 group-hover:w-full" />
               </Link>
             </li>
@@ -125,11 +122,6 @@ export function Navbar() {
                     className="flex items-center justify-between border-b border-neutral-100 py-3 text-lg font-semibold text-neutral-900 last:border-0"
                   >
                     {link.label}
-                    {link.count && (
-                      <span className="text-sm text-neutral-500">
-                        [{link.count}]
-                      </span>
-                    )}
                   </Link>
                 </li>
               ))}
