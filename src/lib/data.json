@@ -71,8 +71,8 @@
       "role": "Fullstack Developer",
       "stack": ["Next.js", "Go", "PostgreSQL", "Framer Motion"],
       "accent": "#ec4899",
-      "image": "/gallery/dev-02.jpg",
-      "gallery": ["/gallery/dev-01.jpg", "/gallery/dev-13.jpg", "/gallery/dev-09.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": "https://bloomcare.vercel.app",
       "repoUrl": "https://github.com/RivaelManurung/bloomcare"
     },
@@ -97,8 +97,8 @@
       "role": "Fullstack Developer",
       "stack": ["Next.js", "Stripe", "Tailwind", "Sanity"],
       "accent": "#0ea5e9",
-      "image": "/gallery/dev-10.jpg",
-      "gallery": ["/gallery/dev-03.jpg", "/gallery/dev-02.jpg", "/gallery/dev-04.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": "https://fragwater.vercel.app",
       "repoUrl": null
     },
@@ -123,8 +123,8 @@
       "role": "Fullstack Developer",
       "stack": ["React", "Go", "WebSocket", "Redis"],
       "accent": "#8b5cf6",
-      "image": "/gallery/dev-06.jpg",
-      "gallery": ["/gallery/dev-05.jpg", "/gallery/dev-08.jpg", "/gallery/dev-10.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": "https://cryptocalm.vercel.app",
       "repoUrl": "https://github.com/RivaelManurung/cryptocalm"
     },
@@ -149,8 +149,8 @@
       "role": "Backend Developer",
       "stack": ["Flutter", "Laravel", "MySQL", "Redis"],
       "accent": "#22c55e",
-      "image": "/gallery/dev-03.jpg",
-      "gallery": ["/gallery/dev-12.jpg", "/gallery/dev-11.jpg", "/gallery/dev-07.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": "https://lunapay-demo.vercel.app",
       "repoUrl": null
     },
@@ -174,8 +174,8 @@
       "role": "Creative Developer",
       "stack": ["Three.js", "GLSL", "Framer Motion"],
       "accent": "#f59e0b",
-      "image": "/gallery/dev-05.jpg",
-      "gallery": ["/gallery/dev-06.jpg", "/gallery/dev-15.jpg", "/gallery/dev-14.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": null,
       "repoUrl": "https://github.com/RivaelManurung/aurora-motion"
     },
@@ -199,8 +199,8 @@
       "role": "Designer / Developer",
       "stack": ["Next.js", "CSS Grid"],
       "accent": "#64748b",
-      "image": "/gallery/dev-15.jpg",
-      "gallery": ["/gallery/dev-01.jpg", "/gallery/dev-08.jpg", "/gallery/dev-04.jpg"],
+      "image": "/template.png",
+      "gallery": ["/template.png", "/template.png", "/template.png"],
       "liveUrl": null,
       "repoUrl": "https://github.com/RivaelManurung/gridtype"
     }
