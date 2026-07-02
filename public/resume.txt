@@ -1,0 +1,8 @@
+RESUME PLACEHOLDER - RIVAEL
+Full-Stack Developer
+
+Tech Stack: Laravel, Golang, Next.js, React, Tailwind, Flutter.
+Interests: AI Video Gen, Crypto, System Architecture.
+Location: Indonesia.
+
+This is a placeholder file for the resume. In a real production environment, this would be a PDF file.
