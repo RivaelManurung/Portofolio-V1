@@ -50,16 +50,13 @@ export function Navbar() {
         {/* Brand */}
         <Link
           href="#"
-          aria-label={`${person.firstName} ${person.lastName} — home`}
+          aria-label="Portofolio — home"
           className="group flex items-center gap-2 rounded-full px-2 py-1 text-base font-extrabold tracking-tight text-neutral-950"
         >
           <span className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-xs font-bold text-white">
-            {person.firstName.charAt(0)}
+            P
           </span>
-          <span className="hidden sm:inline">
-            {person.firstName.charAt(0) +
-              person.firstName.slice(1).toLowerCase()}
-          </span>
+          <span className="hidden sm:inline">Portofolio</span>
         </Link>
 
         {/* Desktop links */}
