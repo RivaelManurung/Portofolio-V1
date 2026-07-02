@@ -1,7 +1,8 @@
 /**
- * Central content source for the portfolio.
- * Swap image URLs / copy here — components read from these arrays only.
+ * All portfolio content lives in ./data.json — edit that file to change copy,
+ * projects, images, links, etc. This module only adds types + helpers on top.
  */
+import rawData from "./data.json";
 
 export type ProjectCategory = "Real Project" | "Exploration";
 
@@ -25,14 +26,14 @@ export interface Project {
   stack: string[];
   /** Accent used for the placeholder gradient + detail hero. */
   accent: string;
-  /** Cover image. */
+  /** Cover image (path under /public). */
   image: string;
   /** Additional screenshots for the detail gallery. */
   gallery: string[];
   /** Live/hosted deployment — enables the "View Project" button when set. */
-  liveUrl?: string;
+  liveUrl: string | null;
   /** Public source repository, if any. */
-  repoUrl?: string;
+  repoUrl: string | null;
 }
 
 export interface Experience {
@@ -53,275 +54,39 @@ export interface SocialLink {
   icon: "github" | "linkedin" | "twitter" | "dribbble" | "mail";
 }
 
-export const person = {
-  firstName: "RIVAEL",
-  lastName: "MANURUNG",
-  role: "Fullstack Developer",
-  tagline: "Building digital products that are clean, scalable, and engineering focused.",
-  yearsExperience: "5y+",
-  available: true,
-  email: "info@kreasinusantara.id",
-} as const;
+export interface Person {
+  firstName: string;
+  lastName: string;
+  role: string;
+  tagline: string;
+  yearsExperience: string;
+  available: boolean;
+  email: string;
+}
 
-export const navLinks = [
-  { label: "Work", href: "#work", count: "12" },
-  { label: "Service", href: "#service", count: "4" },
-  { label: "Experience", href: "#experience", count: "5y+" },
-  { label: "Contact", href: "#contact", count: null },
-] as const;
+export interface NavLink {
+  label: string;
+  href: string;
+  count: string | null;
+}
 
-export const socials: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/RivaelManurung", icon: "github" },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: "linkedin" },
-  { label: "Twitter", href: "https://x.com", icon: "twitter" },
-  { label: "Dribbble", href: "https://dribbble.com", icon: "dribbble" },
-];
+interface PortfolioData {
+  person: Person;
+  navLinks: NavLink[];
+  socials: SocialLink[];
+  services: Service[];
+  experiences: Experience[];
+  projects: Project[];
+}
 
-export const services: Service[] = [
-  {
-    title: "Web Apps & APIs",
-    description:
-      "Designing scalable services, clean REST/GraphQL APIs, and reliable data layers with Laravel and Go.",
-    meta: "Laravel · Go · PostgreSQL",
-  },
-  {
-    title: "Web Design & Dev",
-    description:
-      "Building fast, accessible, conversion-focused web apps with Next.js and a strong design system.",
-    meta: "Next.js · React · Tailwind",
-  },
-  {
-    title: "Cloud & DevOps",
-    description:
-      "Container-based deployments, CI/CD pipelines, and observability so shipping stays boring and safe.",
-    meta: "Docker · CI/CD · Cloud",
-  },
-  {
-    title: "Motions & Animations",
-    description:
-      "Interface motion that clarifies flow instead of distracting — considered, performant, and purposeful.",
-    meta: "Framer Motion · GSAP",
-  },
-];
+const data = rawData as PortfolioData;
 
-export const experiences: Experience[] = [
-  {
-    company: "Kreasi Nusantara",
-    role: "Fullstack Developer & Founder",
-    period: "Jan 2023 - Now",
-  },
-  {
-    company: "Freelance Studio",
-    role: "Product Engineer",
-    period: "Jun 2021 - Dec 2022",
-  },
-  {
-    company: "Startup (Fintech)",
-    role: "Backend Developer",
-    period: "Feb 2020 - May 2021",
-  },
-  {
-    company: "Digital Agency",
-    role: "Frontend Developer",
-    period: "Aug 2019 - Jan 2020",
-  },
-  {
-    company: "Open Source",
-    role: "Contributor",
-    period: "2018 - Now",
-  },
-];
-
-// All imagery is now local & developer-themed (no remote hosts needed).
-// liveUrl values are placeholders — replace with your real deployments.
-// Developer-themed placeholder screenshots (local, in /public/gallery) — swap
-// for real project captures later.
-const GALLERIES: Record<string, string[]> = {
-  bloomcare: ["/gallery/dev-01.jpg", "/gallery/dev-13.jpg", "/gallery/dev-09.jpg"],
-  fragwater: ["/gallery/dev-03.jpg", "/gallery/dev-02.jpg", "/gallery/dev-04.jpg"],
-  cryptocalm: ["/gallery/dev-05.jpg", "/gallery/dev-08.jpg", "/gallery/dev-10.jpg"],
-  lunapay: ["/gallery/dev-12.jpg", "/gallery/dev-11.jpg", "/gallery/dev-07.jpg"],
-  "aurora-motion": ["/gallery/dev-06.jpg", "/gallery/dev-15.jpg", "/gallery/dev-14.jpg"],
-  gridtype: ["/gallery/dev-01.jpg", "/gallery/dev-08.jpg", "/gallery/dev-04.jpg"],
-};
-const galleryFor = (id: string): string[] => GALLERIES[id] ?? [];
-
-export const projects: Project[] = [
-  {
-    id: "bloomcare",
-    title: "BloomCare — Mental Health App",
-    category: "Real Project",
-    summary: "An emotional engine for personal growth.",
-    description:
-      "A mental-health companion pairing daily check-ins with an adaptive content engine.",
-    overview:
-      "BloomCare is a mental-health companion that turns daily mood check-ins into a personalised growth journey. The product blends a calming, motion-led interface with a recommendation engine that adapts the content feed to each user's emotional patterns over time.",
-    challenge:
-      "The team needed sub-100ms recommendations over a growing content library while keeping the mobile experience calm and never overwhelming. Early prototypes felt clinical and the feed ranking couldn't keep up under load.",
-    solution:
-      "I built a Go service that pre-computes ranking vectors and serves them from an in-memory cache, backed by PostgreSQL. On the frontend, a Next.js App Router build with Framer Motion delivers staggered, reduced-motion-aware transitions so the UI feels gentle rather than busy.",
-    highlights: [
-      "Adaptive content ranking with a Go recommendation service (p95 < 80ms)",
-      "Streak + mood analytics dashboard with animated charts",
-      "Fully reduced-motion-aware interface, WCAG AA contrast",
-      "Offline-first check-ins that sync when back online",
-    ],
-    tags: ["Landing Page", "Product"],
-    studio: "Kreasi Nusantara",
-    year: "2025",
-    role: "Fullstack Developer",
-    stack: ["Next.js", "Go", "PostgreSQL", "Framer Motion"],
-    accent: "#ec4899",
-    image: "/gallery/dev-02.jpg",
-    gallery: galleryFor("bloomcare"),
-    liveUrl: "https://bloomcare.vercel.app",
-    repoUrl: "https://github.com/RivaelManurung/bloomcare",
-  },
-  {
-    id: "fragwater",
-    title: "FragWater — Luxury Fragrance Landing",
-    category: "Real Project",
-    summary: "Where scent becomes identity.",
-    description:
-      "A premium unisex fragrance storefront focused on editorial layout and a fast checkout.",
-    overview:
-      "FragWater is a premium unisex fragrance storefront where the shopping experience is treated as editorial storytelling. Every scent gets a scroll-driven narrative before the buy moment, positioning the brand as identity rather than commodity.",
-    challenge:
-      "Luxury e-commerce lives or dies on perceived quality, but heavy imagery and motion usually wreck load times and Core Web Vitals. The brand also demanded a checkout that never felt transactional.",
-    solution:
-      "I paired art-directed responsive imagery (AVIF/WebP) with a strict performance budget, lazy-loading below-the-fold media and preloading only the hero. The Stripe checkout was themed to match the editorial system, keeping trust and brand voice intact end-to-end.",
-    highlights: [
-      "Scroll-driven product storytelling with GPU-friendly motion",
-      "Themed Stripe checkout with Apple/Google Pay",
-      "LCP < 1.5s on a media-heavy landing page",
-      "CMS-driven collections for non-technical editors",
-    ],
-    tags: ["Landing Page", "E-commerce"],
-    studio: "Kreasi Nusantara",
-    year: "2025",
-    role: "Fullstack Developer",
-    stack: ["Next.js", "Stripe", "Tailwind", "Sanity"],
-    accent: "#0ea5e9",
-    image: "/gallery/dev-10.jpg",
-    gallery: galleryFor("fragwater"),
-    liveUrl: "https://fragwater.vercel.app",
-  },
-  {
-    id: "cryptocalm",
-    title: "CryptoCalm — Trading Dashboard",
-    category: "Real Project",
-    summary: "Calm, data-dense trading UI.",
-    description:
-      "A real-time crypto dashboard with a Go streaming backend and live charts.",
-    overview:
-      "CryptoCalm is a real-time trading dashboard that makes a firehose of market data feel calm and legible. It streams live prices, order books, and portfolio P&L without ever dropping frames or overwhelming the trader.",
-    challenge:
-      "Rendering thousands of live updates per second in the browser normally causes jank and memory bloat, and traders can't tolerate stale or stuttering data.",
-    solution:
-      "A Go backend fans out market data over WebSockets with server-side throttling and delta encoding. The React frontend batches updates through a virtualized rendering layer and canvas charts, holding a steady 60fps even during volatility spikes.",
-    highlights: [
-      "Go WebSocket gateway with delta-encoded market feeds",
-      "Virtualized, canvas-based charts at a locked 60fps",
-      "Configurable bento layout of trader widgets",
-      "Dark, low-glare UI tuned for long sessions",
-    ],
-    tags: ["Dashboard", "Real-time"],
-    studio: "Freelance",
-    year: "2024",
-    role: "Fullstack Developer",
-    stack: ["React", "Go", "WebSocket", "Redis"],
-    accent: "#8b5cf6",
-    image: "/gallery/dev-06.jpg",
-    gallery: galleryFor("cryptocalm"),
-    liveUrl: "https://cryptocalm.vercel.app",
-    repoUrl: "https://github.com/RivaelManurung/cryptocalm",
-  },
-  {
-    id: "lunapay",
-    title: "LunaPay — Fintech Wallet",
-    category: "Real Project",
-    summary: "Send money in a tap.",
-    description:
-      "A mobile-first wallet with a Laravel API, secure auth, and a motion-rich onboarding.",
-    overview:
-      "LunaPay is a mobile-first digital wallet concept focused on frictionless transfers and a delightful, trustworthy onboarding. It pairs a Flutter client with a hardened Laravel API to move money in a single tap.",
-    challenge:
-      "Fintech onboarding has to satisfy KYC and security requirements without scaring users away, and the API had to be auditable and resilient to abuse from day one.",
-    solution:
-      "I designed a Laravel API with token rotation, rate limiting, and signed webhooks, plus an idempotent transfer ledger. The Flutter onboarding uses staged, motion-guided steps that make identity verification feel like progress rather than a wall.",
-    highlights: [
-      "Idempotent transfer ledger with double-entry accounting",
-      "Token rotation, rate limiting, and signed webhooks",
-      "Motion-guided KYC onboarding with a 90%+ completion rate",
-      "Biometric unlock and device binding",
-    ],
-    tags: ["Mobile", "Fintech"],
-    studio: "Startup",
-    year: "2023",
-    role: "Backend Developer",
-    stack: ["Flutter", "Laravel", "MySQL", "Redis"],
-    accent: "#22c55e",
-    image: "/gallery/dev-03.jpg",
-    gallery: galleryFor("lunapay"),
-    liveUrl: "https://lunapay-demo.vercel.app",
-  },
-  {
-    id: "aurora-motion",
-    title: "Aurora — Motion Study",
-    category: "Exploration",
-    summary: "A study in scroll-driven light.",
-    description:
-      "An exploration of WebGL gradients and scroll-linked motion.",
-    overview:
-      "Aurora is a personal exploration of scroll-driven light: animated WebGL gradients that respond to scroll velocity and pointer position, wrapped in a minimal editorial shell. It's a sandbox for pushing shaders and easing curves.",
-    challenge:
-      "Real-time shader work is easy to make heavy and inaccessible — it can pin the GPU, ignore reduced-motion preferences, and break on low-end devices.",
-    solution:
-      "I wrote a lightweight GLSL gradient that runs on a single full-screen quad, throttled by requestAnimationFrame and paused entirely for prefers-reduced-motion users. A static fallback keeps the page beautiful even without WebGL.",
-    highlights: [
-      "Single-quad GLSL gradient reacting to scroll + pointer",
-      "Graceful static fallback and reduced-motion pause",
-      "Runs at 60fps on mid-range mobile GPUs",
-    ],
-    tags: ["Exploration", "WebGL"],
-    studio: "Personal",
-    year: "2024",
-    role: "Creative Developer",
-    stack: ["Three.js", "GLSL", "Framer Motion"],
-    accent: "#f59e0b",
-    image: "/gallery/dev-05.jpg",
-    gallery: galleryFor("aurora-motion"),
-    repoUrl: "https://github.com/RivaelManurung/aurora-motion",
-  },
-  {
-    id: "gridtype",
-    title: "GridType — Editorial System",
-    category: "Exploration",
-    summary: "A bento typography playground.",
-    description:
-      "A grid-breaking editorial layout system exploring type scale and rhythm.",
-    overview:
-      "GridType is an editorial layout system exploring how far a design system can bend the grid before it breaks. It's a bento-style playground for type scale, spacing rhythm, and composition rules that stay coherent across breakpoints.",
-    challenge:
-      "Grid-breaking layouts usually collapse on small screens or become a maintenance nightmare of one-off overrides.",
-    solution:
-      "I built a token-driven system of fluid type scales and named grid areas so editorial layouts recompose predictably from mobile to ultrawide, with every override traceable to a single source of truth.",
-    highlights: [
-      "Fluid, clamp-based type scale from a single token set",
-      "Named bento grid areas that recompose per breakpoint",
-      "Zero one-off overrides — everything is systematised",
-    ],
-    tags: ["Exploration", "Design System"],
-    studio: "Personal",
-    year: "2023",
-    role: "Designer / Developer",
-    stack: ["Next.js", "CSS Grid"],
-    accent: "#64748b",
-    image: "/gallery/dev-15.jpg",
-    gallery: galleryFor("gridtype"),
-    repoUrl: "https://github.com/RivaelManurung/gridtype",
-  },
-];
+export const person = data.person;
+export const navLinks = data.navLinks;
+export const socials = data.socials;
+export const services = data.services;
+export const experiences = data.experiences;
+export const projects = data.projects;
 
 export function getProject(id: string): Project | undefined {
   return projects.find((project) => project.id === id);
