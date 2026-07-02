@@ -25,10 +25,17 @@ export function Hero() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
 
-  // Defer the WebGL backdrop until the browser is idle so its ~200KB chunk
-  // never competes with the LCP hero image.
+  // The WebGL backdrop is a desktop-only enhancement: it reacts to the pointer
+  // and its ~200KB chunk would tank mobile Core Web Vitals for no benefit on a
+  // touch device. Load it only on wide, fine-pointer screens, and only once the
+  // browser is idle so it never competes with the LCP hero image.
   const [show3D, setShow3D] = useState(false);
   useEffect(() => {
+    const canRender3D =
+      window.matchMedia("(pointer: fine)").matches &&
+      window.innerWidth >= 1024;
+    if (!canRender3D) return;
+
     const w = window as typeof window & {
       requestIdleCallback?: (cb: () => void) => number;
     };
